@@ -1,5 +1,6 @@
 from selenium import webdriver
 import os
+from slate import Slate
 
 
 def grab_screenshot(driver: webdriver.Chrome, url: str, screenshot_name: str = None) -> bool:
