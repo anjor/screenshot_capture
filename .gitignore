@@ -131,3 +131,5 @@ dmypy.json
 .idea
 *.png
 chromedriver
+*.conf
+.DS_Store
