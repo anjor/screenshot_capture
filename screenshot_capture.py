@@ -42,4 +42,4 @@ if __name__ == '__main__':
 #    }
 #    get_multiple_screenshots(urls_to_process)
     slate = Slate()
-    slate.upload_files(["./screenshots/aws/resources.png"])
+    slate.upload_files(["./screenshots/aws/landing_page.png"])

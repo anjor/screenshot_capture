@@ -24,7 +24,7 @@ class Slate:
     def upload_files(self, files):
         url = "https://uploads.slate.host/api/v3/public"
         for file in files:
-            upload_file = {"file": open(file, 'rb')}
+            upload_file = {"file": (file, open(file, 'rb'), 'image/png')}
             print("Uploading file " + file)
             r = requests.post(url, headers=self._get_auth_header(), files=upload_file)
             if r.status_code == 200:
