@@ -16,7 +16,20 @@ class Slate:
     def _get_auth_header(self):
         return {"Authorization": self.api_key}
 
+    def _get_upload_header(self):
+        header = self._get_auth_header()
+        header["Content-Type"] = "image/png"
+        return header
+
     def upload_files(self, files):
         url = "https://uploads.slate.host/api/v3/public"
-        r = requests.post(url, headers=self._get_auth_header(), files=files)
-        print(r.status_code)
+        for file in files:
+            upload_file = {"file": open(file, 'rb')}
+            print("Uploading file " + file)
+            r = requests.post(url, headers=self._get_auth_header(), files=upload_file)
+            if r.status_code == 200:
+                print("Uploaded file: " + file)
+            else:
+                print("Failed to upload file: " + file, r.status_code)
+
+            print(r.json())
