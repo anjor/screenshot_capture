@@ -133,3 +133,4 @@ dmypy.json
 chromedriver
 *.conf
 .DS_Store
+screenshots
