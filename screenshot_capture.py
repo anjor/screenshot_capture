@@ -30,16 +30,22 @@ def get_multiple_screenshots(urls: dict) -> None:
         grab_screenshot(get_chrome_driver(), url, os.path.join(".", "screenshots", tag, pngify(filename)))
 
 
-if __name__ == '__main__':
-#    urls_to_process = {
-#        'https://aws.amazon.com/s3': ('aws', 'landing_page'),
-#        'https://aws.amazon.com/s3/features': ('aws', 'features'),
-#        'https://aws.amazon.com/s3/storage-classes': ('aws', 'storage-classes'),
-#        'https://aws.amazon.com/s3/pricing': ('aws', 'pricing'),
-#        'https://aws.amazon.com/s3/security': ('aws', 'security'),
-#        'https://aws.amazon.com/s3/resources': ('aws', 'resources'),
-#        'https://aws.amazon.com/s3/faqs': ('aws', 'faqs'),
-#    }
-#    get_multiple_screenshots(urls_to_process)
+def upload_all_files(tag: str) -> None:
+    files = [os.path.join(".", "screenshots", tag, file) for file in os.listdir(os.path.join(".", "screenshots", tag))]
     slate = Slate()
-    slate.upload_files(["./screenshots/aws/landing_page.png"])
+    slate.upload_files(files)
+
+
+if __name__ == '__main__':
+    tag = 'aws'
+    urls_to_process = {
+        'https://aws.amazon.com/s3': (tag, 'landing_page'),
+        'https://aws.amazon.com/s3/features': (tag, 'features'),
+        'https://aws.amazon.com/s3/storage-classes': (tag, 'storage-classes'),
+        'https://aws.amazon.com/s3/pricing': (tag, 'pricing'),
+        'https://aws.amazon.com/s3/security': (tag, 'security'),
+        'https://aws.amazon.com/s3/resources': (tag, 'resources'),
+        'https://aws.amazon.com/s3/faqs': (tag, 'faqs'),
+    }
+    get_multiple_screenshots(urls_to_process)
+    upload_all_files(tag)
